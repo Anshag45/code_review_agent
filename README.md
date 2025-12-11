@@ -13,9 +13,7 @@ This project fulfills the AI Engineering Intern Assignment by showcasing workflo
 ---
 
 ## Project Structure
-<img width="930" height="693" alt="image" src="https://github.com/user-attachments/assets/cdc6a497-3eb5-4786-b006-5b7b87ce59ec" />
-
-
+<img width="330" height="393" alt="image" src="https://github.com/user-attachments/assets/cdc6a497-3eb5-4786-b006-5b7b87ce59ec" />
 ---
 
 ## Requirements
