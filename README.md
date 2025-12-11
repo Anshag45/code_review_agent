@@ -14,31 +14,8 @@ This project fulfills the AI Engineering Intern Assignment by showcasing workflo
 ---
 
 ## Project Structure
+<img width="930" height="693" alt="image" src="https://github.com/user-attachments/assets/cdc6a497-3eb5-4786-b006-5b7b87ce59ec" />
 
-code_review_agent/
-│
-├── app/
-│   ├── main.py
-│   │
-│   ├── engine/
-│   │   └── graph.py
-│   │
-│   ├── tools/
-│   │   └── code_tools.py
-│   │
-│   ├── workflows/
-│   │   └── code_review.py
-│   │
-│   └── storage/
-│       └── memory_store.py
-│
-├── requirements.txt
-├── README.md
-└── images/
-
-
-(Add screenshot here)  
-![Project Structure](images/structure.jpg)
 
 ---
 
@@ -48,10 +25,6 @@ code_review_agent/
 - Install dependencies:
 
 pip install -r requirements.txt
-
-yaml
-Copy code
-
 ---
 
 ## Run the Server
@@ -59,19 +32,15 @@ Copy code
 Start FastAPI:
 
 uvicorn app.main:app --reload --port 8000
+![WhatsApp Image 2025-12-12 at 00 59 47_b238d1e2](https://github.com/user-attachments/assets/85e7e460-01b2-4093-995e-44fe03c241e0)
 
-yaml
-Copy code
-
-(Add terminal screenshot)  
-![Terminal](images/terminal.jpg)
 
 Open Swagger UI:
 
 http://localhost:8000/docs
 
-(Add screenshot)  
-![Swagger](images/swagger.jpg)
+![WhatsApp Image 2025-12-12 at 01 01 40_693d7f47](https://github.com/user-attachments/assets/3ee7da81-392a-4121-b2ec-6b828b08b4be)
+
 
 ---
 
@@ -80,51 +49,32 @@ http://localhost:8000/docs
 ## 1. Create a Sample Graph
 
 POST /graph/create/sample
-
-yaml
-Copy code
+![WhatsApp Image 2025-12-12 at 00 55 10_f3c2f30e](https://github.com/user-attachments/assets/27621132-baee-4b8c-b521-0cb07a85489e)
 
 Example response:
 
 { "graph_id": "<id>" }
-
-yaml
-Copy code
-
-(Add screenshot)  
-![Create Graph](images/create_graph.jpg)
-
 ---
 
 ## 2. Run the Workflow
 
 POST /graph/run
 
-css
-Copy code
-
 Example request body:
 
 {
-"graph_id": "<id>",
-"initial_state": {
-"code": "def foo():\n print("hello")\n # TODO: fix",
-"threshold": 80
+  "graph_id": "<id>",
+  "initial_state": {
+  "code": "def foo():\n print("hello")\n # TODO: fix",
+  "threshold": 80
+  }
 }
-}
-
-yaml
-Copy code
 
 Example response:
 
 { "run_id": "<id>" }
 
-yaml
-Copy code
-
-(Add screenshot)  
-![Run Workflow](images/run_graph.jpg)
+![WhatsApp Image 2025-12-12 at 00 57 28_1e807321](https://github.com/user-attachments/assets/aa852ee3-5048-4ee6-90c1-225cd35d4340)
 
 ---
 
@@ -132,35 +82,32 @@ Copy code
 
 GET /graph/state/<run_id>
 
-lua
-Copy code
 
 Example output:
 
 {
-"state": {
-"functions": ["foo"],
-"function_count": 1,
-"complexity": 3,
-"issues": ["has_todo", "debug_prints"],
-"quality_score": 107
-},
-"log": [
-"starting run at node: extract_functions",
-"running node: extract_functions",
-"running node: check_complexity",
-"running node: detect_issues",
-"running node: suggest_improvements",
-"completed"
-],
-"status": "completed"
+  "state": {
+  "functions": ["foo"],
+  "function_count": 1,
+  "complexity": 3,
+  "issues": ["has_todo", "debug_prints"],
+  "quality_score": 107
+  },
+  "log": [
+    "starting run at node: extract_functions",
+    "running node: extract_functions",
+    "running node: check_complexity",
+    "running node: detect_issues",
+    "running node: suggest_improvements",
+    "completed"
+  ],
+  "status": "completed"
 }
 
-yaml
-Copy code
+![WhatsApp Image 2025-12-12 at 01 03 24_750628c0](https://github.com/user-attachments/assets/88fbfd2a-dbd7-4f2a-aad9-56fb4b63ca31)
 
-(Add screenshot)  
-![Get State](images/get_state.jpg)
+
+![WhatsApp Image 2025-12-12 at 01 02 44_64500e64](https://github.com/user-attachments/assets/beace960-ea44-447e-9fe0-f2d83eb5e0b5)
 
 ---
 
