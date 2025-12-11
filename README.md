@@ -2,7 +2,6 @@
 
 This is a compact FastAPI project implementing a minimal workflow/agent engine (backend only).  
 It demonstrates:
-
 - Nodes as Python functions that read and modify shared state  
 - Directed edges, branching, and looping  
 - A tool registry for reusable functions  
@@ -26,6 +25,11 @@ This project fulfills the AI Engineering Intern Assignment by showcasing workflo
 
 pip install -r requirements.txt
 ---
+
+## Clone the Project
+
+git clone https://github.com/<your-repo>/code_review_agent.git
+cd code_review_agent
 
 ## Run the Server
 
@@ -94,12 +98,12 @@ Example output:
   "quality_score": 107
   },
   "log": [
-    "starting run at node: extract_functions",
-    "running node: extract_functions",
-    "running node: check_complexity",
-    "running node: detect_issues",
-    "running node: suggest_improvements",
-    "completed"
+      "starting run at node: extract_functions",
+      "running node: extract_functions",
+      "running node: check_complexity",
+      "running node: detect_issues",
+      "running node: suggest_improvements",
+      "completed"
   ],
   "status": "completed"
 }
