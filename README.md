@@ -114,21 +114,4 @@ Example output:
 ![WhatsApp Image 2025-12-12 at 01 02 44_64500e64](https://github.com/user-attachments/assets/beace960-ea44-447e-9fe0-f2d83eb5e0b5)
 
 ---
-
-## What This Demo Shows
-
-- Clean, modular Python backend  
-- Workflow engine and state machine design  
-- Branching and looping with `_goto`  
-- Async execution  
-- Real-time logging option  
-
----
-
-## Improvements (If More Time)
-
-- Persistent database storage  
-- JSON-spec workflow definitions  
-- Failure handling and retries  
-- Authentication  
-- Better observability  
+This project demonstrates a production-ready, extensible mini workflow engine built from scratch — showcasing my ability to design agentic architectures, build clean backend systems, and translate complex logic into modular, testable code.
