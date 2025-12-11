@@ -14,14 +14,15 @@ This project fulfills the AI Engineering Intern Assignment by showcasing workflo
 
 ## Project Structure
 <img width="330" height="393" alt="image" src="https://github.com/user-attachments/assets/cdc6a497-3eb5-4786-b006-5b7b87ce59ec" />
----
 
+---
 ## Requirements
 
 - Python 3.10+
 - Install dependencies:
 
 pip install -r requirements.txt
+
 ---
 
 ## Clone the Project
