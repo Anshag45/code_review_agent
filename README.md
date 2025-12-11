@@ -1,156 +1,178 @@
-🚀 Code Review Mini-Agent – Mini Workflow Engine (FastAPI)
+# Code Review Mini-Agent - Mini Workflow Engine (FastAPI)
 
-A compact FastAPI project implementing a minimal workflow/agent engine (backend only).
-This engine demonstrates:
+This is a compact FastAPI project implementing a minimal workflow/agent engine (backend only).  
+It demonstrates:
 
-Nodes as Python functions that read/modify shared state
-
-Directed edges, branching, and looping using simple state directives
-
-A tool registry for reusable utility functions
-
-Async workflow execution
-
-WebSocket support for real-time log streaming
+- Nodes as Python functions that read and modify shared state  
+- Directed edges, branching, and looping  
+- A tool registry for reusable functions  
+- Async execution  
+- Optional WebSocket streaming of logs  
 
 This project fulfills the AI Engineering Intern Assignment by showcasing workflow orchestration, backend architecture, and agent-style state transitions.
 
-📁 Project Structure
+---
+
+## Project Structure
+
 app/
-  main.py                 # FastAPI application + endpoints
-  engine/
-      graph.py            # Graph engine, Node, executor logic
-  tools/
-      code_tools.py       # Simple rule-based analysis tools
-  workflows/
-      code_review.py      # Code Review workflow definition
-  storage/
-      memory_store.py     # In-memory graph/run storage
+main.py
+engine/
+graph.py
+tools/
+code_tools.py
+workflows/
+code_review.py
+storage/
+memory_store.py
 requirements.txt
 README.md
+images/
 
-📸 Example Screenshot
+yaml
+Copy code
 
-(Add your folder-structure screenshot here)
+(Add screenshot here)  
 ![Project Structure](images/structure.jpg)
 
-📦 Requirements
+---
 
-Python 3.10+
+## Requirements
 
-Install dependencies:
+- Python 3.10+
+- Install dependencies:
 
 pip install -r requirements.txt
 
-▶️ Run the Server
+yaml
+Copy code
 
-Start FastAPI using Uvicorn:
+---
+
+## Run the Server
+
+Start FastAPI:
 
 uvicorn app.main:app --reload --port 8000
 
+yaml
+Copy code
 
-📸 (Add terminal screenshot)
-![Terminal Running](images/terminal.jpg)
+(Add terminal screenshot)  
+![Terminal](images/terminal.jpg)
 
-Now visit:
+Open Swagger UI:
 
-👉 http://localhost:8000/docs
+http://localhost:8000/docs
 
-📸 (Add Swagger screenshot)
-![Swagger UI](images/swagger.jpg)
+(Add screenshot)  
+![Swagger](images/swagger.jpg)
 
-🧪 How to Use the Workflow Engine
-1️⃣ Create a Sample Graph
+---
+
+# How to Use the Workflow Engine
+
+## 1. Create a Sample Graph
+
 POST /graph/create/sample
 
+yaml
+Copy code
 
-Response:
+Example response:
 
 { "graph_id": "<id>" }
 
+yaml
+Copy code
 
-📸
+(Add screenshot)  
 ![Create Graph](images/create_graph.jpg)
 
-2️⃣ Start a Workflow Run
+---
+
+## 2. Run the Workflow
+
 POST /graph/run
 
+css
+Copy code
 
-Example Body:
+Example request body:
 
 {
-  "graph_id": "<id>",
-  "initial_state": {
-    "code": "def foo():\n    print(\"hello\")\n    # TODO: fix",
-    "threshold": 80
-  }
+"graph_id": "<id>",
+"initial_state": {
+"code": "def foo():\n print("hello")\n # TODO: fix",
+"threshold": 80
+}
 }
 
+yaml
+Copy code
 
-Response:
+Example response:
 
 { "run_id": "<id>" }
 
+yaml
+Copy code
 
-📸
+(Add screenshot)  
 ![Run Workflow](images/run_graph.jpg)
 
-3️⃣ Get Workflow State & Logs
+---
+
+## 3. Get Workflow State
+
 GET /graph/state/<run_id>
 
+lua
+Copy code
 
-Response Example:
+Example output:
 
 {
-  "state": {
-    "functions": ["foo"],
-    "function_count": 1,
-    "complexity": 3,
-    "issues": ["has_todo", "debug_prints"],
-    "issue_count": 2,
-    "suggestions": ["remove debug prints / address TODOs"],
-    "quality_score": 107
-  },
-  "log": [
-    "starting run at node: extract_functions",
-    "running node: extract_functions",
-    "running node: check_complexity",
-    "running node: detect_issues",
-    "running node: suggest_improvements",
-    "completed"
-  ],
-  "status": "completed"
+"state": {
+"functions": ["foo"],
+"function_count": 1,
+"complexity": 3,
+"issues": ["has_todo", "debug_prints"],
+"quality_score": 107
+},
+"log": [
+"starting run at node: extract_functions",
+"running node: extract_functions",
+"running node: check_complexity",
+"running node: detect_issues",
+"running node: suggest_improvements",
+"completed"
+],
+"status": "completed"
 }
 
+yaml
+Copy code
 
-📸
+(Add screenshot)  
 ![Get State](images/get_state.jpg)
 
-4️⃣ Stream Logs (Optional)
+---
 
-Use any WebSocket client:
+## What This Demo Shows
 
-ws://localhost:8000/ws/<run_id>
+- Clean, modular Python backend  
+- Workflow engine and state machine design  
+- Branching and looping with `_goto`  
+- Async execution  
+- Real-time logging option  
 
+---
 
-📸 (Optional WebSocket screenshot)
-![WS Logs](images/ws_logs.jpg)
+## Improvements (If More Time)
 
-🧠 What This Demo Shows
-✔️ Clean, modular Python backend
-✔️ Workflow graph + state machine implementation
-✔️ Branching & looping via _goto directive
-✔️ Async-friendly node execution
-✔️ Real-time log streaming
-✔️ Easily extensible architecture (add nodes, agents, tools)
-🚀 Possible Improvements (If More Time)
-
-SQLite/Postgres persistent storage
-
-Store graphs as JSON specs
-
-Retry logic, scheduling, observability
-
-Multi-tenant authenticated workflows
-
-More advanced code analysis tools
+- Persistent database storage  
+- JSON-spec workflow definitions  
+- Failure handling and retries  
+- Authentication  
+- Better observability  
