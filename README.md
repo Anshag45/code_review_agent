@@ -1,62 +1,156 @@
-# Code Review Mini-Agent - Mini Workflow Engine (FastAPI)
+🚀 Code Review Mini-Agent – Mini Workflow Engine (FastAPI)
 
-This is a compact FastAPI project implementing a small workflow/agent engine (backend only).
-It demonstrates:
-- Nodes as Python functions that read/modify shared state
-- Edges, branching, and looping via simple state directives
-- Tool registry for reusable functions
-- Async execution and a WebSocket endpoint to stream run state/logs
+A compact FastAPI project implementing a minimal workflow/agent engine (backend only).
+This engine demonstrates:
 
-## Structure
-- `app/main.py` - FastAPI app & endpoints
-- `app/engine/graph.py` - Graph + Node + executor logic
-- `app/tools/code_tools.py` - Simple rule-based tools used by nodes
-- `app/workflows/code_review.py` - Sample Code Review workflow builder
-- `app/storage/memory_store.py` - In-memory storage for graphs & runs
+Nodes as Python functions that read/modify shared state
 
-## Requirements
-- Python 3.10+
-- Install:
-  ```
-  pip install -r requirements.txt
-  ```
+Directed edges, branching, and looping using simple state directives
 
-## Run
-1. Start the server:
-   ```
-   uvicorn app.main:app --reload --port 8000
-   ```
-2. Create sample graph:
-   ```
-   POST /graph/create/sample
-   ```
-   Response: `{ "graph_id": "<id>" }`
-3. Start a run:
-   ```
-   POST /graph/run
-   {
-     "graph_id": "<id>",
-     "initial_state": { "code": "def foo():\n    print(\"hello\")\n    # TODO: fix", "threshold": 80 }
-   }
-   ```
-   Response: `{ "run_id": "<id>" }`
-4. Stream logs via WebSocket:
-   ```
-   ws://localhost:8000/ws/<run_id>
-   ```
-5. Query run state:
-   ```
-   GET /graph/state/<run_id>
-   ```
+A tool registry for reusable utility functions
 
-## What this demo shows
-- Clean, modular Python code
-- Async-friendly node execution
-- Branching and looping via a simple `_goto` state directive
-- How to structure a small workflow engine suitable for expansion
+Async workflow execution
 
-## Improvements (if more time)
-- Persistent storage (SQLite/Postgres)
-- Pluggable node serialization (store graphs as JSON/spec)
-- Authentication & multi-tenant runs
-- More advanced scheduling, retries, observability
+WebSocket support for real-time log streaming
+
+This project fulfills the AI Engineering Intern Assignment by showcasing workflow orchestration, backend architecture, and agent-style state transitions.
+
+📁 Project Structure
+app/
+  main.py                 # FastAPI application + endpoints
+  engine/
+      graph.py            # Graph engine, Node, executor logic
+  tools/
+      code_tools.py       # Simple rule-based analysis tools
+  workflows/
+      code_review.py      # Code Review workflow definition
+  storage/
+      memory_store.py     # In-memory graph/run storage
+requirements.txt
+README.md
+
+📸 Example Screenshot
+
+(Add your folder-structure screenshot here)
+![Project Structure](images/structure.jpg)
+
+📦 Requirements
+
+Python 3.10+
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+▶️ Run the Server
+
+Start FastAPI using Uvicorn:
+
+uvicorn app.main:app --reload --port 8000
+
+
+📸 (Add terminal screenshot)
+![Terminal Running](images/terminal.jpg)
+
+Now visit:
+
+👉 http://localhost:8000/docs
+
+📸 (Add Swagger screenshot)
+![Swagger UI](images/swagger.jpg)
+
+🧪 How to Use the Workflow Engine
+1️⃣ Create a Sample Graph
+POST /graph/create/sample
+
+
+Response:
+
+{ "graph_id": "<id>" }
+
+
+📸
+![Create Graph](images/create_graph.jpg)
+
+2️⃣ Start a Workflow Run
+POST /graph/run
+
+
+Example Body:
+
+{
+  "graph_id": "<id>",
+  "initial_state": {
+    "code": "def foo():\n    print(\"hello\")\n    # TODO: fix",
+    "threshold": 80
+  }
+}
+
+
+Response:
+
+{ "run_id": "<id>" }
+
+
+📸
+![Run Workflow](images/run_graph.jpg)
+
+3️⃣ Get Workflow State & Logs
+GET /graph/state/<run_id>
+
+
+Response Example:
+
+{
+  "state": {
+    "functions": ["foo"],
+    "function_count": 1,
+    "complexity": 3,
+    "issues": ["has_todo", "debug_prints"],
+    "issue_count": 2,
+    "suggestions": ["remove debug prints / address TODOs"],
+    "quality_score": 107
+  },
+  "log": [
+    "starting run at node: extract_functions",
+    "running node: extract_functions",
+    "running node: check_complexity",
+    "running node: detect_issues",
+    "running node: suggest_improvements",
+    "completed"
+  ],
+  "status": "completed"
+}
+
+
+📸
+![Get State](images/get_state.jpg)
+
+4️⃣ Stream Logs (Optional)
+
+Use any WebSocket client:
+
+ws://localhost:8000/ws/<run_id>
+
+
+📸 (Optional WebSocket screenshot)
+![WS Logs](images/ws_logs.jpg)
+
+🧠 What This Demo Shows
+✔️ Clean, modular Python backend
+✔️ Workflow graph + state machine implementation
+✔️ Branching & looping via _goto directive
+✔️ Async-friendly node execution
+✔️ Real-time log streaming
+✔️ Easily extensible architecture (add nodes, agents, tools)
+🚀 Possible Improvements (If More Time)
+
+SQLite/Postgres persistent storage
+
+Store graphs as JSON specs
+
+Retry logic, scheduling, observability
+
+Multi-tenant authenticated workflows
+
+More advanced code analysis tools
