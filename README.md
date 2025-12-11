@@ -15,22 +15,27 @@ This project fulfills the AI Engineering Intern Assignment by showcasing workflo
 
 ## Project Structure
 
-app/
-main.py
-engine/
-graph.py
-tools/
-code_tools.py
-workflows/
-code_review.py
-storage/
-memory_store.py
-requirements.txt
-README.md
-images/
+code_review_agent/
+│
+├── app/
+│   ├── main.py
+│   │
+│   ├── engine/
+│   │   └── graph.py
+│   │
+│   ├── tools/
+│   │   └── code_tools.py
+│   │
+│   ├── workflows/
+│   │   └── code_review.py
+│   │
+│   └── storage/
+│       └── memory_store.py
+│
+├── requirements.txt
+├── README.md
+└── images/
 
-yaml
-Copy code
 
 (Add screenshot here)  
 ![Project Structure](images/structure.jpg)
